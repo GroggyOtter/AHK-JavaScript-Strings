@@ -5,31 +5,67 @@ This is a script that adds [JavaScript-style string functionality](https://devel
 After saving the `javascript_strings.ahk` file, [`#Include`](https://www.autohotkey.com/docs/v2/lib/_Include.htm) it at the top of your script.  
 It's important to ensure the `#Include` happens before using any of the functions/property as this will throw an error.  
 
-### Properties
+### List of Properties:
+
+* [`length`](#length) - Returns the length of the string.
+
+### List of Methods:
+
+* [`charAt()`](#charAt) - Returns the character at a specified index/position.  
+* [`charCodeAt()`](#charCodeAt) - Returns the Unicode of the character at a specified index/position.  
+* [`concat()`](#concat) - Returns two or more joined strings.
+* [`endsWith()`](#endsWith) - Returns true if a string ends with the provided value.  
+* [`includes()`](#includes) - Returns true if a string contains the provided value.  
+* [`indexOf()`](#indexOf) - Returns the index/position of the first occurrence of a value in a string.  
+* [`lastIndexOf()`](#lastIndexOf) - Returns the index/position of the last occurrence of a value in a string.  
+* [`length`]() #length- Returns the length of the string.
+* [`match()`](#match) - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
+* [`padEnd()`](#padEnd) - Pads the end of the string to a given length using a given string.  
+* [`padStart()`](#padStart) - Pads the beginning of the string to a given length with a given string.  
+* [`repeat()`](#repeat) - Repeats the string as many times as requested.
+* [`replace()`](#replace) - Searches a string for a value or regular expression and replace it.  
+* [`search()`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
+* [`slice()`](#slice) - Extracts a part of a string and returns it.  
+* [`split()`](#split) - Splits a string into an array of substrings.  
+* [`startsWith()`](#startsWith) - Checks whether a string begins with specified characters.  
+* [`substring()`](#substring) - Extracts characters from a string, between two specified indices/positions.  
+* [`toLowerCase()`](#toLowerCase) - Returns a string converted to lowercase letters.
+* [`toUpperCase()`](#toUpperCase) - Returns a string converted to uppercase letters.  
+* [`trim()`](#trim) - Returns string after removing all surrounding whitespace.  
+* [`trimEnd()`](#trimEnd) - Returns string after removing all whitespace from the end of the string.  
+* [`trimStart()`](#trimStart) - Returns string after removing all whitespace from the beginning of the string.  
+
+### Properties:
+
+##### length
 * `length` - Returns the length of the string.
 
       str := 'AutoHotkey'
       MsgBox(str.length ' characters')  ; 10 characters
 
-### Methods
+### Methods:
 
+##### charAt()
 * `charAt(index)` - Returns the character at a specified index/position.  
 `index` is the string position of the desired character.  
 
       str := 'AutoHotkey'
       MsgBox(str.charAt(5))  ; H
 
+##### charCodeAt()
 * `charCodeAt(index)` - Returns the Unicode of the character at a specified index/position.  
 `index` is the string position of the desired character.  
 
       str := 'AutoHotkey'
       MsgBox(str.charCodeAt(5))  ; 72 (the numeric code for H)
 
+##### concat()
 * `concat(string1 [, string2, ..., stringN])` - Returns two or more joined strings.
 
       str := 'Auto'
       MsgBox(str.concat('Hotkey', ' ', 'v2'))  ; AutoHotkey v2
 
+##### endsWith()
 * `endsWith(value [, end_pos:=unset])` - Returns true if a string ends with the provided value.  
 `value` is the string to search for.  
 `end_pos` allows you to set the "end of string" position. The function will ignore everything past that index.  
@@ -41,6 +77,7 @@ If end_pos is omitted, the last character of the string is the end position.
       MsgBox(str.endsWith('is pretty'))  ; 0
       MsgBox(str.endsWith('is pretty', 20))  ; 1
 
+##### includes()
 * `includes(value [, start_pos:=1])` - Returns true if a string contains the provided value.  
 `value` is the string to search for.  
 `end_pos` allows you to set the "end of string" position. The function will ignore everything past that index.  
@@ -51,6 +88,7 @@ This gives strings a built-in [InStr()](https://www.autohotkey.com/docs/v2/lib/I
       MsgBox(str.includes('AHK'))  ; 1
       MsgBox(str.includes('AHK', 5))  ; 0
 
+##### indexOf()
 * `indexOf(value [, start_pos:=1])` - Returns the index/position of the first occurrence of a value in a string.  
 `value` is the string to search for.  
 `start_pos` allows you to set the "start of string" position. The function will ignore everything before that index.  
@@ -61,6 +99,7 @@ This gives strings a built-in [InStr()](https://www.autohotkey.com/docs/v2/lib/I
       MsgBox(str.indexOf('Hot'))  ; 5
       MsgBox(str.indexOf('Hot', 10))  ; 15
 
+##### lastIndexOf()
 * `lastIndexOf(value [, end_pos:=unset])` - Returns the index/position of the last occurrence of a value in a string.  
 `value` is the string to search for.  
 `end_pos` allows you to set the "end of string" position. The function will ignore everything past that index.  
@@ -70,6 +109,7 @@ If end_pos is omitted, the last character of the string is the ending position.
       MsgBox(str.lastIndexOf('Hot'))  ; 15
       MsgBox(str.lastIndexOf('Hot', 10))  ; 5
 
+##### match()
 * `match(regex_pattern)` - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
 `regex_pattern` is a valid RegEx pattern.  
 This gives strings a built-in [RegExMatch()](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm).
@@ -77,6 +117,7 @@ This gives strings a built-in [RegExMatch()](https://www.autohotkey.com/docs/v2/
       str := 'Auto Hot Key'
       MsgBox(str.match('\w+ (\w+) \w+')[1])  ; Hot
 
+##### padEnd()
 * `padEnd(length [, pad_str:=' '])` - Pads the end of the string to a given length using a given string.  
 The pattern repeats if needed to fill the specified length.  
 `length` is the number of desired characters in the final string. If this number is less than the string's length, no padding is done.
@@ -87,7 +128,8 @@ If pad_str is omitted, space is used.
       MsgBox(str.padEnd(10)) ; "Hello     "
       MsgBox(str.padEnd(10, '123'))  ; "Hello12312"
 
-* `padStart(pad_length [, pad_str:=' '])` - Pads the beginning of the string to a given length with with a given string.  
+##### padStart()
+* `padStart(pad_length [, pad_str:=' '])` - Pads the beginning of the string to a given length with a given string.  
 This pattern repeats if needed to fill the specified length.
 `length` is the number of desired characters in the final string. If this number is less than the string's length, no padding is done.
 `pad_str` is the character set to use to pad the string.
@@ -97,6 +139,7 @@ If omitted, space is used.
       MsgBox(str.padStart(10))  ; "     Hello"
       MsgBox(str.padStart(10, '123'))  ; "12312Hello"
 
+##### repeat()
 * `repeat(number_of_times)` - Repeats the string as many times as requested.
 `number_of_times` defines the number of times the string should be repeated.  
 
@@ -104,6 +147,7 @@ If omitted, space is used.
       str2 := 'Joy '
       MsgBox(str1.repeat(2) str2.repeat(2) '!') ; Happy Happy Joy Joy!
 
+##### replace()
 * `replace(regex_pattern [, replacement:=''])` - Searches a string for a value or regular expression and replace it.  
 This gives strings a built-in [RegExReplace()](https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm).
 `regex_pattern` is a valid RegEx pattern.  
@@ -113,6 +157,7 @@ If replacement is omitted, the matched text is removed.
       str := 'ManualHotkey'
       MsgBox(str.replace('^Manual', 'Auto'))  ; AutoHotkey
 
+##### search()
 * `search(regex_pattern)` - Searches a string for a value or regular expression and returns the index/position of the match.  
 Unlike `match()`, this returns the position of the match instead of a RegExMatchInfo object.  
 `regex_pattern` is a valid RegEx pattern.  
@@ -120,6 +165,7 @@ Unlike `match()`, this returns the position of the match instead of a RegExMatch
       str := 'AutoHotkey'
       MsgBox(str.Search('Hot.*?$'))  ; 5
 
+##### slice()
 * `slice([start_pos:=1, end_pos:=unset])` - Extracts a part of a string and returns it.  
 `start_pos` allows you to set the "start of string" position. The function will ignore everything before that index.  
 If start_pos is omitted, the first character of the string is the starting position.  
@@ -129,6 +175,7 @@ If end_pos is omitted, the last character of the string is the end position.
       str := 'AutoHotkey'
       MsgBox(str.slice(5, 7))  ; Hot
 
+##### split()
 * `split([delimiter:='', max_limit:=-1])` - Splits a string into an array of substrings.  
 This gives strings a built-in [StrSplit()](https://www.autohotkey.com/docs/v2/lib/StrSplit.htm).  
 `delimiter` is the character that the string should be split up by. Common delimeters include space, comma, and linefeed but can be any string of 1 or more characters.  
@@ -144,6 +191,7 @@ If max_limit is omitted, -1 is used to indicate no limit.
       str := 'AHK'
       MsgBox(str.Split()[2])  ; Creates array ['A', 'H', 'K']
 
+##### startsWith()
 * `startsWith(value [, start_pos:=1])` - Checks whether a string begins with specified characters.  
 `value` is the string to search for.  
 `start_pos` allows you to set the "start of string" position. The function will ignore everything before that index.  
@@ -154,6 +202,7 @@ If start_pos is omitted, the first character of the string is the starting posit
       MsgBox(str.startsWith('Hot'))  ; 0
       MsgBox(str.startsWith('Hot', 5))  ; 1
 
+##### substring()
 * `substring([start_pos:=1, end_pos:=unset])` - Extracts characters from a string, between two specified indices/positions.  
 `start_pos` allows you to set the "start of string" position. The function will ignore everything before that index.  
 If start_pos is omitted, the first character of the string is the starting position.  
@@ -165,16 +214,19 @@ This gives strings a built-in [SubStr()](https://www.autohotkey.com/docs/v2/lib/
       MsgBox(str.substring(5, 7))  ; Hot
 
 
-* `toLowerCase()` - Returns a string converted to lowercase letters
+##### toLowerCase()
+* `toLowerCase()` - Returns a string converted to lowercase letters.
 
       str := 'HOTKEY'
       MsgBox('str.toLowerCase()')  ; hotkey
 
-* `toUpperCase()` - Returns a string converted to uppercase letters  
+##### toUpperCase()
+* `toUpperCase()` - Returns a string converted to uppercase letters.  
 
       str := 'hotkey'
       MsgBox('str.toUpperCase()')  ; HOTKEY
 
+##### trim()
 * `trim()` - Returns string after removing all surrounding whitespace.  
 Whitespace includes spaces, tabs, linefeeds, and carriage returns.
 
@@ -182,12 +234,14 @@ Whitespace includes spaces, tabs, linefeeds, and carriage returns.
           . '`nLine 2    '
       MsgBox(str.trim())  ; Line 1 Line 2
 
+##### trimEnd()
 * `trimEnd()` - Returns string after removing all whitespace from the end of the string.  
 Whitespace includes spaces, tabs, linefeeds, and carriage returns.
 
       str := '    AHK    '
       MsgBox(str.trimEnd() ; '    AHK'
 
+##### trimStart()
 * `trimStart()` - Returns string after removing all whitespace from the beginning of the string.  
 Whitespace includes spaces, tabs, linefeeds, and carriage returns.  
 
