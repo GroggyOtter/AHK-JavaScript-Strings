@@ -11,24 +11,23 @@ It's important to ensure the `#Include` happens before using any of the function
 
 ### List of Methods:
 
-* [`charAt()`](#charAt) - Returns the character at a specified index/position.  
-* [`charCodeAt()`](#charCodeAt) - Returns the Unicode of the character at a specified index/position.  
-* [`concat()`](#concat) - Returns two or more joined strings.
-* [`endsWith()`](#endsWith) - Returns true if a string ends with the provided value.  
-* [`includes()`](#includes) - Returns true if a string contains the provided value.  
-* [`indexOf()`](#indexOf) - Returns the index/position of the first occurrence of a value in a string.  
-* [`lastIndexOf()`](#lastIndexOf) - Returns the index/position of the last occurrence of a value in a string.  
-* [`length`]() #length- Returns the length of the string.
-* [`match()`](#match) - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
-* [`padEnd()`](#padEnd) - Pads the end of the string to a given length using a given string.  
-* [`padStart()`](#padStart) - Pads the beginning of the string to a given length with a given string.  
-* [`repeat()`](#repeat) - Repeats the string as many times as requested.
-* [`replace()`](#replace) - Searches a string for a value or regular expression and replace it.  
-* [`search()`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
-* [`slice()`](#slice) - Extracts a part of a string and returns it.  
-* [`split()`](#split) - Splits a string into an array of substrings.  
-* [`startsWith()`](#startsWith) - Checks whether a string begins with specified characters.  
-* [`substring()`](#substring) - Extracts characters from a string, between two specified indices/positions.  
+* [`charAt(index)`](#charAt) - Returns the character at a specified index/position.  
+* [`charCodeAt(index)`](#charCodeAt) - Returns the Unicode of the character at a specified index/position.  
+* [`concat(String1 [,String2, StringN])`](#concat) - Returns two or more joined strings.
+* [`endsWith(value [, end_pos])`](#endsWith) - Returns true if a string ends with the provided value.  
+* [`includes(value [, start_pos])`](#includes) - Returns true if a string contains the provided value.  
+* [`indexOf(value [, start_pos])`](#indexOf) - Returns the index/position of the first occurrence of a value in a string.  
+* [`lastIndexOf(value [, end_pos])`](#lastIndexOf) - Returns the index/position of the last occurrence of a value in a string.  
+* [`match(regex)`](#match) - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
+* [`padEnd(length [, pad_str])`](#padEnd) - Pads the end of the string to a given length using a given string.  
+* [`padStart(length [, pad_str])`](#padStart) - Pads the beginning of the string to a given length with a given string.  
+* [`repeat(number_of_times)`](#repeat) - Repeats the string as many times as requested.
+* [`replace(regex_pattern, replacement)`](#replace) - Searches a string for a value or regular expression and replace it.  
+* [`search(regex_pattern)`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
+* [`slice([start_pos, end_pos])`](#slice) - Extracts a part of a string and returns it.  
+* [`split(delimiter, max_limit)`](#split) - Splits a string into an array of substrings.  
+* [`startsWith(value [, start_pos])`](#startsWith) - Checks whether a string begins with specified characters.  
+* [`substring([start_pos, end_pos])`](#substring) - Extracts characters from a string, between two specified indices/positions.  
 * [`toLowerCase()`](#toLowerCase) - Returns a string converted to lowercase letters.
 * [`toUpperCase()`](#toUpperCase) - Returns a string converted to uppercase letters.  
 * [`trim()`](#trim) - Returns string after removing all surrounding whitespace.  
