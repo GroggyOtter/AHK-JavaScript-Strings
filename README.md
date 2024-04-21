@@ -26,7 +26,7 @@ It's important to ensure the `#Include` happens before using any of the function
 * [`search(regex_pattern)`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
 * [`slice([start_pos, end_pos])`](#slice) - Extracts a part of a string and returns it.  
 * [`split(delimiter, max_limit)`](#split) - Splits a string into an array of substrings.  
-* [`startsWith(value [, start_pos])`](#startsWith) - Checks whether a string begins with specified characters.  
+* [`startsWith(value [, start_pos])`](#startsWith) - Checks whether a string begins with the specified characters.  
 * [`substring([start_pos, end_pos])`](#substring) - Extracts characters from a string, between two specified indices/positions.  
 * [`toLowerCase()`](#toLowerCase) - Returns a string converted to lowercase letters.
 * [`toUpperCase()`](#toUpperCase) - Returns a string converted to uppercase letters.  
@@ -191,7 +191,7 @@ If max_limit is omitted, -1 is used to indicate no limit.
       MsgBox(str.Split()[2])  ; Creates array ['A', 'H', 'K']
 
 ##### startsWith()
-* `startsWith(value [, start_pos:=1])` - Checks whether a string begins with specified characters.  
+* `startsWith(value [, start_pos:=1])` - Checks whether a string begins with the specified characters.  
 `value` is the string to search for.  
 `start_pos` allows you to set the "start of string" position. The function will ignore everything before that index.  
 If start_pos is omitted, the first character of the string is the starting position.  
