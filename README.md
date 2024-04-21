@@ -22,7 +22,7 @@ It's important to ensure the `#Include` happens before using any of the function
 * [`padEnd(length [, pad_str])`](#padEnd) - Pads the end of the string to a given length using a given string.  
 * [`padStart(length [, pad_str])`](#padStart) - Pads the beginning of the string to a given length with a given string.  
 * [`repeat(number_of_times)`](#repeat) - Repeats the string as many times as requested.
-* [`replace(regex_pattern, replacement)`](#replace) - Searches a string for a value or regular expression and replace it.  
+* [`replace(regex_pattern [, replacement])`](#replace) - Searches a string for a value or regular expression and replace it.  
 * [`search(regex_pattern)`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
 * [`slice([start_pos, end_pos])`](#slice) - Extracts a part of a string and returns it.  
 * [`split(delimiter, max_limit)`](#split) - Splits a string into an array of substrings.  
