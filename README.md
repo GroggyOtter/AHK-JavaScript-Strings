@@ -5,12 +5,39 @@ This is a script that adds [JavaScript-style string functionality](https://devel
 After saving the `javascript_strings.ahk` file, [`#Include`](https://www.autohotkey.com/docs/v2/lib/_Include.htm) it at the top of your script.  
 It's important to ensure the `#Include` happens before using any of the functions/property as this will throw an error.  
 
+### List of Changes in this fork:
+## Additional methods:
+- String.at()
+- String.replaceAll()
+- String.matchAll()
+- String.valueOf()
+
+## Other changes:
+- Added __Item 
+- Added __Enum 
+
+### These allow direct access for values, so you can do things like:
+
+```
+Msgbox('hello'[2])       ; -> prints 'e'
+For (char in 'hello') {
+  Msgbox(char)
+}                        ; prints each character of 'hello' in a new msgbox
+```
+### You can use those with variables too of course.
+
+```
+myString := 'hello'
+Msgbox(myString[5])    ; -> prints 'o'
+```
+
 ### List of Properties:
 
 * [`length`](#length) - Returns the length of the string.
 
 ### List of Methods:
 
+* [`at(index)`](#at) - Returns the character at a specified index or position. *Can search negative indices.*
 * [`charAt(index)`](#charAt) - Returns the character at a specified index/position.  
 * [`charCodeAt(index)`](#charCodeAt) - Returns the Unicode of the character at a specified index/position.  
 * [`concat(String1 [,String2, StringN])`](#concat) - Returns two or more joined strings.
@@ -23,6 +50,7 @@ It's important to ensure the `#Include` happens before using any of the function
 * [`padStart(length [, pad_str])`](#padStart) - Pads the beginning of the string to a given length with a given string.  
 * [`repeat(number_of_times)`](#repeat) - Repeats the string as many times as requested.
 * [`replace(regex_pattern [, replacement])`](#replace) - Searches a string for a value or regular expression and replace it.  
+* [`replaceAll(regex_pattern [, replacement])`](#replaceAll) - Searches a string for all occurances of a value or regex and replaces them.  
 * [`search(regex_pattern)`](#search) - Searches a string for a value or regular expression and returns the index/position of the match.  
 * [`slice([start_pos, end_pos])`](#slice) - Extracts a part of a string and returns it.  
 * [`split(delimiter, max_limit)`](#split) - Splits a string into an array of substrings.  
@@ -43,6 +71,13 @@ It's important to ensure the `#Include` happens before using any of the function
       MsgBox(str.length ' characters')  ; 10 characters
 
 ### Methods:
+
+##### at()
+* `at(index)` - Returns the character at a specified index/position. Can search negative indices.  
+`index` is the string position of the desired character.  
+
+      str := 'AutoHotkey'
+      MsgBox(str.charAt(-6))  ; H
 
 ##### charAt()
 * `charAt(index)` - Returns the character at a specified index/position.  
@@ -109,12 +144,25 @@ If end_pos is omitted, the last character of the string is the ending position.
       MsgBox(str.lastIndexOf('Hot', 10))  ; 5
 
 ##### match()
-* `match(regex_pattern)` - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
+* `match(regex_pattern)` - Searches a string for a value or regular expression, and returns the match.
 `regex_pattern` is a valid RegEx pattern.  
 This gives strings a built-in [RegExMatch()](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm).
 
       str := 'Auto Hot Key'
       MsgBox(str.match('\w+ (\w+) \w+')[1])  ; Hot
+
+##### matchAll()
+* `match(regex_pattern)` - Searches a string for a value or regular expression, and returns a [RegExMatchInfo object](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm#MatchObject).
+`regex_pattern` is a valid RegEx pattern.  
+This gives strings a built-in [RegExMatch()](https://www.autohotkey.com/docs/v2/lib/RegExMatch.htm).
+
+      str := 'Auto Hot key is the best Hot Key program'
+      y := str.match('\w+ (\w+) \w+')[1]  ;returns ['Auto Hot Key', 'Hot']
+      for eachStr in y {
+            MsgBox(eachStr)               ;Prints 'Auto Hot Key' and then prints 'Hot'
+      }
+      ; 
+
 
 ##### padEnd()
 * `padEnd(length [, pad_str:=' '])` - Pads the end of the string to a given length using a given string.  
@@ -147,14 +195,27 @@ If omitted, space is used.
       MsgBox(str1.repeat(2) str2.repeat(2) '!') ; Happy Happy Joy Joy!
 
 ##### replace()
-* `replace(regex_pattern [, replacement:=''])` - Searches a string for a value or regular expression and replace it.  
+* `replace(regex_pattern [, replacement:='', mode := 0])` - Searches a string for a value or regular expression and replace it.
+To remove more than one occurance either use replaceAll() or set mode equal to 1 (or any positive integer), both accept regex.
+
 This gives strings a built-in [RegExReplace()](https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm).
 `regex_pattern` is a valid RegEx pattern.  
 `replacement` defines the text to replace the matched text with. Because this is a RegEx process, it can included backreferences such as `$1`.  
 If replacement is omitted, the matched text is removed.  
+Match is case sensitive by default. 
 
       str := 'ManualHotkey'
-      MsgBox(str.replace('^Manual', 'Auto'))  ; AutoHotkey
+      MsgBox(str.replace('Manual', 'Auto'))  ; AutoHotkey
+
+##### replaceAll()
+* `replaceAll(regex_pattern [, replacement:='', &OutputVarCount, Limit := -1, StartingPos := 1])` - Searches a string for a value or regular expression and replace all occurances of it up to Limit, where -1 replaces all.  
+This gives strings a built-in [RegExReplace()](https://www.autohotkey.com/docs/v2/lib/RegExReplace.htm).
+`regex_pattern` can be a valid RegEx pattern.  
+`replacement` defines the text to replace every occurance of the matched text with. Because this is a RegEx process, it can included backreferences such as `$1`.  
+If replacement is omitted, each occurance of matched text is removed.  
+
+      str := 'The best version of AutoHotkey is definitely AutoHotkey v2.'
+      MsgBox(str.replaceAll('AutoHotkey', 'AHK'))  ; 'The best version of AHK is definitely AHK v2.'
 
 ##### search()
 * `search(regex_pattern)` - Searches a string for a value or regular expression and returns the index/position of the match.  
@@ -238,11 +299,17 @@ Whitespace includes spaces, tabs, linefeeds, and carriage returns.
 Whitespace includes spaces, tabs, linefeeds, and carriage returns.
 
       str := '    AHK    '
-      MsgBox(str.trimEnd() ; '    AHK'
+      MsgBox(str.trimEnd()) ; '    AHK'
 
 ##### trimStart()
 * `trimStart()` - Returns string after removing all whitespace from the beginning of the string.  
 Whitespace includes spaces, tabs, linefeeds, and carriage returns.  
 
       str := '    AHK    '
-      MsgBox(str.trimStart() ; 'AHK    '
+      MsgBox(str.trimStart()) ; 'AHK    '
+
+##### valueOf()
+* `valueOf()` - Returns the string 
+
+      str := 'AHK'
+      MsgBox(str.valueOf()) ; 'AHK'
